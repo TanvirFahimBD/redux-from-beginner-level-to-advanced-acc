@@ -6,6 +6,9 @@ const LongForm = () => {
     email: "",
     message: "",
     lastName: "",
+    gender: "",
+    terms: false,
+    quantity: 0,
   };
 
   const reducer = (state, action) => {
@@ -15,6 +18,21 @@ const LongForm = () => {
         return {
           ...state,
           [action.payload.name]: action.payload.value,
+        };
+      case "TOGGLE":
+        return {
+          ...state,
+          terms: !state.terms,
+        };
+      case "INCREMENT":
+        return {
+          ...state,
+          quantity: state.quantity + action.payload.count,
+        };
+      case "DECREMENT":
+        return {
+          ...state,
+          quantity: state.quantity - action.payload.count,
         };
       default:
         return state;
@@ -68,6 +86,25 @@ const LongForm = () => {
                 })
               }
             />
+            <label htmlFor="email" className="d-block">
+              Education
+            </label>
+            <select
+              className="my-2 rounded p-2"
+              name="education"
+              id="education"
+              onChange={(e) =>
+                dispatch({
+                  type: "INPUT",
+                  payload: { name: e.target.name, value: e.target.value },
+                })
+              }
+            >
+              <option value="SSC">SSC</option>
+              <option value="HSC">HSC</option>
+              <option value="BSC">BSC</option>
+              <option value="MSC">MSC</option>
+            </select>
             <label htmlFor="message" className="d-block">
               Message
             </label>
@@ -85,6 +122,19 @@ const LongForm = () => {
                 })
               }
             />
+            <br />
+            <input
+              type="checkbox"
+              name="terms"
+              id="terms"
+              className="mx-2"
+              onChange={(e) =>
+                dispatch({
+                  type: "TOGGLE",
+                })
+              }
+            />
+            <label htmlFor="term">Accept terms and conditions</label>
           </div>
           <div className="w-50">
             <label htmlFor="lastName" className="d-block">
@@ -104,10 +154,68 @@ const LongForm = () => {
                 })
               }
             />
+            <h3>Gender</h3>
+            <div className="d-flex ms-5">
+              <input
+                type="radio"
+                name="gender"
+                id="male"
+                value="male"
+                onBlur={(e) =>
+                  dispatch({
+                    type: "INPUT",
+                    payload: { name: e.target.name, value: e.target.value },
+                  })
+                }
+              />
+              <label htmlFor="male" className="d-block mx-3">
+                Male
+              </label>
+              <input
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+                onBlur={(e) =>
+                  dispatch({
+                    type: "INPUT",
+                    payload: { name: e.target.name, value: e.target.value },
+                  })
+                }
+              />
+              <label htmlFor="female" className="d-block mx-3">
+                Female
+              </label>
+            </div>
+            <br />
+            <button
+              className="btn btn-primary mx-3"
+              onClick={() =>
+                dispatch({
+                  type: "INCREMENT",
+                  payload: { count: 4 },
+                })
+              }
+            >
+              +
+            </button>
+            <span>{state.quantity}</span>
+            <button
+              className="btn btn-primary mx-3"
+              onClick={() =>
+                dispatch({
+                  type: "DECREMENT",
+                  payload: { count: 4 },
+                })
+              }
+            >
+              -
+            </button>
             <br />
             <input
               type="submit"
               className="my-2 rounded  p-2 btn btn-primary"
+              disabled={!state.terms}
             />
           </div>
         </div>
