@@ -8,14 +8,22 @@ const Home = () => {
     state: { loading, products, error },
   } = useProducts();
 
+  let content;
+
   if (loading) {
-    return <p> Loading...</p>;
+    content = <p> Loading...</p>;
   }
 
-  console.log("products", products);
+  if (error) {
+    content = <p> Something wrong going on...</p>;
+  }
+
+  if (products.length === 0) {
+    content = <p> Products list is empty</p>;
+  }
 
   if (products.length > 0) {
-    return (
+    content = (
       <Container>
         <Row>
           {products.map((product, i) => (
@@ -25,6 +33,8 @@ const Home = () => {
       </Container>
     );
   }
+
+  return <div>{content}</div>;
 };
 
 export default Home;

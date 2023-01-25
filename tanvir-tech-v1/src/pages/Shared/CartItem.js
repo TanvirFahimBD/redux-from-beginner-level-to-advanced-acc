@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import { useProducts } from "../../contexts/ProductProvider";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 
-const Product = ({ product, wish, cart }) => {
+const CartItem = ({ product, cart }) => {
   const { dispatch } = useProducts();
   const { image, model, price, rating, keyFeature, spec } = product;
   return (
@@ -15,7 +15,7 @@ const Product = ({ product, wish, cart }) => {
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>${price}</Card.Text>
-          {!wish && (
+          {!cart && (
             <>
               <Button
                 variant="primary"
@@ -42,17 +42,17 @@ const Product = ({ product, wish, cart }) => {
               </Button>
             </>
           )}
-          {wish && (
+          {cart && (
             <Button
               variant="warning"
               onClick={() =>
                 dispatch({
-                  type: actionTypes.REMOVE_FROM_WISH_LIST,
+                  type: actionTypes.REMOVE_FROM_CART,
                   payload: product,
                 })
               }
             >
-              Remove from wish list
+              Remove from Cart
             </Button>
           )}
         </Card.Body>
@@ -61,4 +61,4 @@ const Product = ({ product, wish, cart }) => {
   );
 };
 
-export default Product;
+export default CartItem;
