@@ -11,7 +11,7 @@ const Product = ({ product }) => {
         <Card.Img variant="top" src={image} />
         <Card.Body>
           <Card.Title>{model}</Card.Title>
-          <Card.Text>${price}</Card.Text>
+          <Card.Text>$ {price}</Card.Text>
           <Button variant="primary" className="m-3 ">
             Add to Cart
           </Button>
