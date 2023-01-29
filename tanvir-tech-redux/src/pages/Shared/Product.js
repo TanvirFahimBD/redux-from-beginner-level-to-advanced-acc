@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/actionCreator/productAction";
+import { addToCart } from "../../redux/actionCreators/productActions";
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();

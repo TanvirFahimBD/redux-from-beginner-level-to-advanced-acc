@@ -12,8 +12,8 @@ const Home = () => {
       .then((data) => setProducts(data));
   }, []);
 
-  const state = useSelector((state) => state);
-  console.log("state", state);
+  const state = useSelector((prevState) => prevState);
+  console.log(state);
 
   let content;
 
