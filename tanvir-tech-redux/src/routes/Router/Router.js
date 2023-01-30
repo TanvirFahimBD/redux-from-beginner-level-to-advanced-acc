@@ -7,7 +7,7 @@ import Cart from "../../pages/Cart";
 import AddProduct from "../../pages/Dashboard/AddProduct";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import ProductList from "../../pages/Dashboard/ProductList";
-import Home from "../../pages/Home";
+import Home from "../../pages/Home/Home";
 import NotFoundPage from "../../pages/Shared/NotFoundPage";
 import TopProducts from "../../pages/TopProducts";
 import WishList from "../../pages/WishList";
