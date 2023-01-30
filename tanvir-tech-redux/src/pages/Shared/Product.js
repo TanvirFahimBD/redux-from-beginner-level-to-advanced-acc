@@ -10,6 +10,8 @@ import {
 } from "../../redux/actionCreators/productActions";
 
 const Product = ({ product }) => {
+  const { pathname } = useLocation();
+  const isCart = pathname.endsWith("cart");
   const dispatch = useDispatch();
   const { image, model, price } = product;
 
@@ -20,19 +22,26 @@ const Product = ({ product }) => {
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>$ {price}</Card.Text>
-          <Button
-            variant="primary"
-            className="m-3 "
-            onClick={() => dispatch(addToCart(product))}
-          >
-            Add to Cart
-          </Button>
-          <Button
-            variant="warning"
-            onClick={() => dispatch(removeFromCart(product))}
-          >
-            Remove From Cart
-          </Button>
+          {!isCart && (
+            <>
+              <Button
+                variant="primary"
+                className="m-3 "
+                onClick={() => dispatch(addToCart(product))}
+              >
+                Add to Cart
+              </Button>
+              <Button variant="warning">Add to wish list</Button>
+            </>
+          )}
+          {isCart && (
+            <Button
+              variant="danger"
+              onClick={() => dispatch(removeFromCart(product))}
+            >
+              Remove From Cart
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </Col>
