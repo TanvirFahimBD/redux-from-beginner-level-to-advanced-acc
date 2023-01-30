@@ -13,8 +13,6 @@ const Home = () => {
   }, []);
 
   const state = useSelector((prevState) => prevState);
-  console.log(state);
-
   let content;
 
   if (products?.length === 0) {

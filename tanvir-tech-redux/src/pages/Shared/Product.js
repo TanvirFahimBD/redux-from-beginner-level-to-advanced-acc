@@ -3,7 +3,11 @@ import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/actionCreators/productActions";
+import { useLocation } from "react-router-dom";
+import {
+  addToCart,
+  removeFromCart,
+} from "../../redux/actionCreators/productActions";
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
@@ -23,7 +27,12 @@ const Product = ({ product }) => {
           >
             Add to Cart
           </Button>
-          <Button variant="warning">Add to Wishlist</Button>
+          <Button
+            variant="warning"
+            onClick={() => dispatch(removeFromCart(product))}
+          >
+            Remove From Cart
+          </Button>
         </Card.Body>
       </Card>
     </Col>
