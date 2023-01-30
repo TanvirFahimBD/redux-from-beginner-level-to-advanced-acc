@@ -15,9 +15,11 @@ const Cart = () => {
     content = (
       <Container>
         <Row>
-          {cart?.map((product, i) => (
-            <Product key={i} product={product} />
-          ))}
+          {cart
+            .sort((a, b) => a.id - b.id)
+            .map((product, i) => (
+              <Product key={i} product={product} />
+            ))}
         </Row>
       </Container>
     );

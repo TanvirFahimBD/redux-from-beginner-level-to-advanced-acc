@@ -17,7 +17,12 @@ const Product = ({ product }) => {
 
   return (
     <Col className="my-4">
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem" }} className="shadow-lg">
+        {isCart && (
+          <p className="bg-primary rounded-pill text-white w-25 ms-2 mt-2 p-1">
+            {product?.quantity}
+          </p>
+        )}
         <Card.Img variant="top" src={image} />
         <Card.Body>
           <Card.Title>{model}</Card.Title>

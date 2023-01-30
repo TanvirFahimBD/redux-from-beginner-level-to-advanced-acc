@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useProducts } from "../hooks/useProductsAll";
 import Product from "./Shared/Product";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  const products = useProducts();
 
-  useEffect(() => {
-    fetch("https://fake-api.up.railway.app/pcProducts")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-  const state = useSelector((prevState) => prevState);
   let content;
 
   if (products?.length === 0) {
