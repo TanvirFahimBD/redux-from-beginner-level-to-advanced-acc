@@ -1,7 +1,31 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import Product from "./Shared/Product";
 
 const WishList = () => {
-  return <div>WishList</div>;
+  const wishList = useSelector((state) => state.wishList);
+  let content;
+
+  if (wishList?.length === 0) {
+    content = <p> Wish list is empty</p>;
+  }
+
+  if (wishList?.length > 0) {
+    content = (
+      <Container>
+        <Row>
+          {wishList
+            .sort((a, b) => a.id - b.id)
+            .map((product, i) => (
+              <Product key={i} product={product} />
+            ))}
+        </Row>
+      </Container>
+    );
+  }
+
+  return <div>{content}</div>;
 };
 
 export default WishList;

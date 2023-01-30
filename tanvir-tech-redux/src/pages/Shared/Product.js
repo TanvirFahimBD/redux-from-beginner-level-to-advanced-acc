@@ -6,19 +6,24 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
   addToCart,
+  addToWishList,
   removeFromCart,
+  removeFromWishList,
 } from "../../redux/actionCreators/productActions";
 
 const Product = ({ product }) => {
   const { pathname } = useLocation();
   const isCart = pathname.endsWith("cart");
+  const isWishList = pathname.endsWith("wish-list");
+  const isHome = pathname.endsWith("/");
+  const isTopProducts = pathname.endsWith("top-products");
   const dispatch = useDispatch();
   const { image, model, price } = product;
 
   return (
     <Col className="my-4">
       <Card style={{ width: "18rem" }} className="shadow-lg">
-        {isCart && (
+        {(isCart || isWishList) && (
           <p className="bg-primary rounded-pill text-white w-25 ms-2 mt-2 p-1">
             {product?.quantity}
           </p>
@@ -27,7 +32,7 @@ const Product = ({ product }) => {
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>$ {price}</Card.Text>
-          {!isCart && (
+          {(isTopProducts || isHome) && (
             <>
               <Button
                 variant="primary"
@@ -36,7 +41,12 @@ const Product = ({ product }) => {
               >
                 Add to Cart
               </Button>
-              <Button variant="warning">Add to wish list</Button>
+              <Button
+                variant="warning"
+                onClick={() => dispatch(addToWishList(product))}
+              >
+                Add to wish list
+              </Button>
             </>
           )}
           {isCart && (
@@ -45,6 +55,14 @@ const Product = ({ product }) => {
               onClick={() => dispatch(removeFromCart(product))}
             >
               Remove From Cart
+            </Button>
+          )}
+          {isWishList && (
+            <Button
+              variant="danger"
+              onClick={() => dispatch(removeFromWishList(product))}
+            >
+              Remove From WishList
             </Button>
           )}
         </Card.Body>
