@@ -19,6 +19,12 @@ const Header = () => {
         <Link to="/top-products" className="mx-3 text-decoration-none ">
           Top products
         </Link>
+        <Link to="/about" className="mx-3 text-decoration-none ">
+          About
+        </Link>
+        <Link to="/dashboard" className="mx-3 text-decoration-none ">
+          Dashboard
+        </Link>
         <Link to="/wish-list" className="mx-3 text-decoration-none ">
           Wish list
         </Link>

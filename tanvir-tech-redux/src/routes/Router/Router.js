@@ -1,7 +1,12 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import About from "../../pages/About";
 import Cart from "../../pages/Cart";
+import AddProduct from "../../pages/Dashboard/AddProduct";
+import Dashboard from "../../pages/Dashboard/Dashboard";
+import ProductList from "../../pages/Dashboard/ProductList";
 import Home from "../../pages/Home";
 import NotFoundPage from "../../pages/Shared/NotFoundPage";
 import TopProducts from "../../pages/TopProducts";
@@ -25,8 +30,8 @@ export const router = createBrowserRouter([
         element: <WishList />,
       },
       {
-        path: "/cart",
-        element: <Cart />,
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/cart",
@@ -35,6 +40,24 @@ export const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFoundPage />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/dashboard/product-list",
+        element: <ProductList />,
+      },
+      {
+        path: "/dashboard/add-product",
+        element: <AddProduct />,
       },
     ],
   },
