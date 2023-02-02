@@ -33,15 +33,23 @@ const Home = () => {
     );
   }
 
-  if (products?.length > 0 && (stock === true || brands.length)) {
-    console.log("stock", stock);
-    console.log("brands", brands);
+  if (products?.length > 0 && (stock || brands.length)) {
     content = (
       <Container>
         <Row>
           {products
-            .filter((pd) => pd.status)
-            .filter((pd) => brands.includes(pd.model.toLowerCase().slice(0, 5)))
+            .filter((pd) => {
+              if (stock) {
+                return pd.status === stock;
+              }
+              return pd;
+            })
+            .filter((pd) => {
+              if (brands.length) {
+                return brands.includes(pd.brand);
+              }
+              return pd;
+            })
             .map((product, i) => (
               <Product key={i} product={product} />
             ))}

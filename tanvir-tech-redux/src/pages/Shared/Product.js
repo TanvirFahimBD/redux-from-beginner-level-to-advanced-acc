@@ -18,7 +18,7 @@ const Product = ({ product }) => {
   const isHome = pathname.endsWith("/");
   const isTopProducts = pathname.endsWith("top-products");
   const dispatch = useDispatch();
-  const { image, model, price } = product;
+  const { image, model, price, status } = product;
 
   return (
     <Col className="my-4">
@@ -32,6 +32,9 @@ const Product = ({ product }) => {
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>$ {price}</Card.Text>
+          <Card.Text className="text-danger">
+            {status ? "Stock available" : "Out of stock"}
+          </Card.Text>
           {(isTopProducts || isHome) && (
             <>
               <Button
