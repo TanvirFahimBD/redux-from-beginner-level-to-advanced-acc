@@ -12,6 +12,7 @@ import "./Home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const { brands, stock } = useSelector((state) => state.filter.filters);
+
   const products = useProducts();
 
   let content;
