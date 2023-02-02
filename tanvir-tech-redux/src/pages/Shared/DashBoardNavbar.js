@@ -12,7 +12,7 @@ const DashBoardNavbar = () => {
           to="/dashboard"
           className="mx-3 text-decoration-none d-block  text-white"
         >
-          Dashboard Home
+          Dashboard
         </Link>
         <Link
           to="/dashboard/product-list"

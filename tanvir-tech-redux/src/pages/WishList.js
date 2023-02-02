@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Product from "./Shared/Product";
 
 const WishList = () => {
-  const wishList = useSelector((state) => state.wishList);
+  const wishList = useSelector((state) => state.product.wishList);
   let content;
 
   if (wishList?.length === 0) {

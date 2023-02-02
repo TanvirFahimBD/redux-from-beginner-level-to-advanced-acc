@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Product from "./Shared/Product";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.product.cart);
   let content;
 
   if (cart?.length === 0) {
