@@ -22,7 +22,10 @@ const Product = ({ product }) => {
 
   return (
     <Col className="my-4">
-      <Card style={{ width: "18rem" }} className="shadow-lg">
+      <Card
+        style={{ width: "18rem", minHeight: "570px" }}
+        className="shadow-lg"
+      >
         {(isCart || isWishList) && (
           <p className="bg-primary rounded-pill text-white w-25 ms-2 mt-2 p-1">
             {product?.quantity}

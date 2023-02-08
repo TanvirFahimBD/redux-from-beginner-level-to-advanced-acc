@@ -16,7 +16,7 @@ const Cart = () => {
       <Container>
         <Row>
           {cart
-            .sort((a, b) => a.id - b.id)
+            .sort((a, b) => a.cartPosition - b.cartPosition)
             .map((product, i) => (
               <Product key={i} product={product} />
             ))}

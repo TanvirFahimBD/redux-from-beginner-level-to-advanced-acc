@@ -1,11 +1,14 @@
 import {
+  ADD_PRODUCT,
   ADD_TO_CART,
   ADD_TO_WISH_LIST,
+  LOAD_DATA,
   REMOVE_FROM_CART,
   REMOVE_FROM_WISH_LIST,
 } from "../actionTypes/actionTypes";
 
 const initialState = {
+  products: [],
   cart: [],
   wishList: [],
 };
@@ -20,6 +23,20 @@ const productReducer = (state = initialState, action) => {
   );
 
   switch (action.type) {
+    // load data
+    case LOAD_DATA:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
+    // add data
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+      };
+
     // cart
     case ADD_TO_CART:
       if (selectedInCart) {
