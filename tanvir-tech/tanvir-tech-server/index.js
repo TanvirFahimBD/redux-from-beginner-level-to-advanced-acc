@@ -10,10 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//TODO: set db info in .env & remove from index.js before git push
-// techDb
-//lMVvLfYvULFkQ7pe
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.hqjnl.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
