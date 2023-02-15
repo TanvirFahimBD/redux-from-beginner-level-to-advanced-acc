@@ -30,17 +30,15 @@ async function run() {
     // POST product
     app.post("/products", async (req, res) => {
       const product = req.body;
-      console.log("product", product);
       const result = await productCollection.insertOne(product);
       res.send(result);
     });
 
     //DELETE product
-    app.delete("/products/id", async (req, res) => {
+    app.delete("/products/:id", async (req, res) => {
       const id = req.params.id;
-      console.log("id", id);
-      const query = ObjectId(id);
-      const result = await productCollection.insertOne(product);
+      const query = { _id: new ObjectId(id) };
+      const result = await productCollection.deleteOne(query);
       res.send(result);
     });
   } finally {

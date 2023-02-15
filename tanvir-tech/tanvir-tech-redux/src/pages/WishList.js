@@ -8,7 +8,7 @@ const WishList = () => {
   let content;
 
   if (wishList?.length === 0) {
-    content = <p> Wish list is empty</p>;
+    content = <p> Wish list is empty !!!</p>;
   }
 
   if (wishList?.length > 0) {

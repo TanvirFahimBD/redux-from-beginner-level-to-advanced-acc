@@ -1,7 +1,6 @@
 import { addProduct } from "../../actionCreators/productActions";
 
 const addProductData = (product) => {
-  console.log("now", product);
   return async (dispatch, getState) => {
     const res = await fetch("http://localhost:5000/products", {
       method: "POST",

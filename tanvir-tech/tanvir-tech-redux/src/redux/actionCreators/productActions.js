@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT,
   ADD_TO_CART,
   ADD_TO_WISH_LIST,
+  DELETE_PRODUCT,
   LOAD_DATA,
   REMOVE_FROM_CART,
   REMOVE_FROM_WISH_LIST,
@@ -18,6 +19,13 @@ export const loadData = (data) => {
   return {
     type: LOAD_DATA,
     payload: data,
+  };
+};
+
+export const deleteProduct = (id) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: id,
   };
 };
 

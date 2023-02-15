@@ -4,6 +4,7 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const ADD_TO_WISH_LIST = "ADD_TO_WISH_LIST";
 export const REMOVE_FROM_WISH_LIST = "REMOVE_FROM_WISH_LIST";
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 //* For filter
 export const TOGGLE_BRAND = "TOGGLE_BRAND";

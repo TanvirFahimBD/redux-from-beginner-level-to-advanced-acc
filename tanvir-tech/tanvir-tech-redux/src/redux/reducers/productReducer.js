@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT,
   ADD_TO_CART,
   ADD_TO_WISH_LIST,
+  DELETE_PRODUCT,
   LOAD_DATA,
   REMOVE_FROM_CART,
   REMOVE_FROM_WISH_LIST,
@@ -35,6 +36,13 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: [...state.products, action.payload],
+      };
+
+    // delete data
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(p => p.id !== action.payload),
       };
 
     // cart
