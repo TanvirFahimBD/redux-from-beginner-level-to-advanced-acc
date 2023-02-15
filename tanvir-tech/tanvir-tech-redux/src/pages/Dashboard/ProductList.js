@@ -5,7 +5,6 @@ import ProductRow from "./ProductRow";
 
 const ProductList = () => {
   const products = useProducts();
-  console.log("products", products);
   return (
     <div className="my-5 border shadow-lg rounded">
       <Table striped bordered hover>

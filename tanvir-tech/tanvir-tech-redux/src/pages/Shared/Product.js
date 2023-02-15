@@ -31,7 +31,7 @@ const Product = ({ product }) => {
             {product?.quantity}
           </p>
         )}
-        <Card.Img variant="top" src={image} />
+        <Card.Img variant="top" src={image} style={{ minHeight: "300px" }} />
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>$ {price}</Card.Text>

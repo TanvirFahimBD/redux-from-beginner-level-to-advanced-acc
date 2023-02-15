@@ -4,31 +4,45 @@ import addProductData from "../../redux/thunk/products/addProductData";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState("");
-  const [brand, setBrand] = useState("");
-  const [status, setStatus] = useState(false);
+  const [model, setModel] = useState("");
+  //brand
+  const [brand, setBrand] = useState("amd");
   const [image, setImage] = useState("");
-  const [image2, setImage2] = useState("");
+  //status
+  const [status, setStatus] = useState(false);
   const [feature1, setFeature1] = useState("");
   const [feature2, setFeature2] = useState("");
   const [feature3, setFeature3] = useState("");
   const [feature4, setFeature4] = useState("");
+  const [price, setPrice] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [spec1, setSpec1] = useState("");
+  const [spec2, setSpec2] = useState("");
+  const [spec3, setSpec3] = useState("");
+  const [spec4, setSpec4] = useState("");
 
   const handleAddProduct = (e) => {
     e.preventDefault();
+    const keyFeature = [feature1, feature2, feature3, feature4];
+    const spec = [
+      { processor: spec1 },
+      { motherboard: spec2 },
+      { ram: spec3 },
+      { storage: spec4 },
+    ];
     const productInfo = {
-      product,
+      model,
       brand,
-      status,
       image,
-      image2,
-      feature1,
-      feature2,
-      feature3,
-      feature4,
+      status,
+      keyFeature,
+      price: parseInt(price),
+      rating: parseInt(rating),
+      spec,
     };
+    console.log(productInfo);
     dispatch(addProductData(productInfo));
-    e.target.reset();
+    // e.target.reset();
   };
   return (
     <div>
@@ -37,10 +51,10 @@ const AddProduct = () => {
           <div className="w-50">
             <input
               type="text"
-              name="product"
+              name="model"
               className="d-block my-2"
-              placeholder="Enter Product name"
-              onBlur={(e) => setProduct(e.target.value)}
+              placeholder="Enter Model"
+              onBlur={(e) => setModel(e.target.value)}
             />
             <select onChange={(e) => setBrand(e.target.value)}>
               <option value="amd">AMD</option>
@@ -50,17 +64,15 @@ const AddProduct = () => {
             <input
               type="radio"
               name="status"
-              value="Available"
               className="mx-3"
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(true)}
             />{" "}
             Available
             <input
               type="radio"
               name="status"
-              value="Out of Stock"
               className="mx-3"
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(false)}
             />{" "}
             Out of Stock
             <br />
@@ -78,6 +90,22 @@ const AddProduct = () => {
               placeholder="Key feature 3"
               onBlur={(e) => setFeature3(e.target.value)}
             />
+            <br />
+            <input
+              type="text"
+              name="spec1"
+              className="d-block my-2"
+              placeholder="Spec 1"
+              onBlur={(e) => setSpec1(e.target.value)}
+            />
+            <input
+              type="text"
+              name="spec3"
+              className="d-block my-2"
+              placeholder="Spec 3"
+              onBlur={(e) => setSpec3(e.target.value)}
+            />
+            <br />
             <div className="text-start ">
               <input
                 type="submit"
@@ -95,11 +123,11 @@ const AddProduct = () => {
               onBlur={(e) => setImage(e.target.value)}
             />
             <input
-              type="text"
+              type="number"
               className="d-block my-2"
-              name="image2"
-              placeholder="Image"
-              onBlur={(e) => setImage2(e.target.value)}
+              name="price"
+              placeholder="Price"
+              onBlur={(e) => setPrice(e.target.value)}
             />
             <br />
             <input
@@ -115,6 +143,29 @@ const AddProduct = () => {
               className="d-block my-2"
               placeholder="Key feature 4"
               onBlur={(e) => setFeature4(e.target.value)}
+            />
+            <br />
+            <input
+              type="text"
+              name="spec2"
+              className="d-block my-2"
+              placeholder="Spec 2"
+              onBlur={(e) => setSpec2(e.target.value)}
+            />
+            <br />
+            <input
+              type="text"
+              name="spec4"
+              className="d-block my-2"
+              placeholder="Spec 4"
+              onBlur={(e) => setSpec4(e.target.value)}
+            />
+            <input
+              type="number"
+              className="d-block my-2"
+              name="rating"
+              placeholder="Rating"
+              onBlur={(e) => setRating(e.target.value)}
             />
             <br />
           </div>

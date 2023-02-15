@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
@@ -21,16 +21,26 @@ async function run() {
   try {
     const productCollection = client.db("techDb").collection("products");
 
+    // GET products
     app.get("/products", async (req, res) => {
       const products = await productCollection.find({}).toArray();
       res.send(products);
     });
 
+    // POST product
     app.post("/products", async (req, res) => {
       const product = req.body;
       console.log("product", product);
       const result = await productCollection.insertOne(product);
-      console.log("result", result);
+      res.send(result);
+    });
+
+    //DELETE product
+    app.delete("/products/id", async (req, res) => {
+      const id = req.params.id;
+      console.log("id", id);
+      const query = ObjectId(id);
+      const result = await productCollection.insertOne(product);
       res.send(result);
     });
   } finally {
@@ -40,7 +50,7 @@ async function run() {
 run().catch(() => console.log(err));
 
 app.get("/", (req, res) => {
-  res.send("Tanvir Tech Live server running");
+  res.send("Tanvir Tech Server Live ");
 });
 
 app.listen(port, (req, res) => {

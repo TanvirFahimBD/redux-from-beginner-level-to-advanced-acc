@@ -15,11 +15,11 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
   const selectedInCart = state.cart.find(
-    (product) => product.id === action.payload.id
+    (product) => product._id === action.payload._id
   );
 
   const selectedInWishList = state.wishList.find(
-    (product) => product.id === action.payload.id
+    (product) => product._id === action.payload._id
   );
 
   switch (action.type) {
@@ -41,7 +41,7 @@ const productReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       if (selectedInCart) {
         const prevCart = state.cart.filter(
-          (product) => product.id !== action.payload.id
+          (product) => product._id !== action.payload._id
         );
         selectedInCart.quantity = selectedInCart.quantity + 1;
         return {
@@ -57,7 +57,7 @@ const productReducer = (state = initialState, action) => {
     case REMOVE_FROM_CART:
       if (selectedInCart.quantity > 1) {
         const prevCart = state.cart.filter(
-          (product) => product.id !== action.payload.id
+          (product) => product._id !== action.payload._id
         );
         selectedInCart.quantity = selectedInCart.quantity - 1;
         return {
