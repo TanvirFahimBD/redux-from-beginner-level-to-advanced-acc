@@ -40,7 +40,6 @@ const AddProduct = () => {
       rating: parseInt(rating),
       spec,
     };
-    console.log(productInfo);
     dispatch(addProductData(productInfo));
     // e.target.reset();
   };
