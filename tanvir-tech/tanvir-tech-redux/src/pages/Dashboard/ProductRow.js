@@ -1,19 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useProducts } from "../../hooks/useProductsAll";
 import { deleteProductData } from "../../redux/thunk/products/deleteProductData";
 
 const ProductRow = ({ pd, pos, removeHandle }) => {
   const { model, brand, status, price } = pd;
 
   const dispatch = useDispatch()
-  useProducts()
 
   const deleteHandler = (pd) => {
     const confirm = window.confirm(`Are you sure you want to delete ${pd.model}`);
     if (confirm) {
-      dispatch(deleteProductData(pd._id))
       removeHandle()
+      dispatch(deleteProductData(pd._id))
     }
   }
   return (

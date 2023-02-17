@@ -35,7 +35,7 @@ const Product = ({ product }) => {
         <Card.Body>
           <Card.Title>{model}</Card.Title>
           <Card.Text>$ {price}</Card.Text>
-          <Card.Text className="text-danger">
+          <Card.Text className={status ? "text-success" : "text-danger"}>
             {status ? "Stock available" : "Out of stock"}
           </Card.Text>
           {(isTopProducts || isHome) && (

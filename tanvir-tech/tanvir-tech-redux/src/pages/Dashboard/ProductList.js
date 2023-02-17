@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import loadProductData from "../../redux/thunk/products/fetchProducts";
@@ -7,16 +7,16 @@ import ProductRow from "./ProductRow";
 const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  let deleteVal = 0;
+  const [deleteVal, setDeleteVal] = useState(0)
+
+  const removeHandle = () => {
+    setDeleteVal(deleteVal + 1)
+  }
 
   useEffect(() => {
     dispatch(loadProductData());
-    console.log('load now')
   }, [dispatch, deleteVal]);
 
-  const removeHandle = () => {
-    deleteVal = deleteVal + 1;
-  }
 
   return (
     <div className="my-5 border shadow-lg rounded">
